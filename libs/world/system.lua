@@ -7,8 +7,17 @@ return {
       icon = assets.world.system,
       planets = {},
       x = math.random(1, 500), y = math.random(1, 300),
-      draw = assets.draw
+      draw = function(self)
+        for planetNum = 1, #self.planets do
+          local planet = self.planets[planetNum]
+          planet:draw()
+        end
+      end
     }
+
+    for i = 1, 5 do
+      system.planets[i] = planet.new()
+    end
     return system
   end
 }

@@ -3,7 +3,9 @@ function love.load()
   gamestates = require "libs.gamestates"
 
   galaxy = galaxy.new()
-  gamestate = "galaxyMap"
+  localSystem = 1
+  localPlanet = 1
+  gamestate = "inSystem"
 end
 
 function love.update(dt)

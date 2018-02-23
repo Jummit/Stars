@@ -7,7 +7,7 @@ return {
       textColor={r=200,g=200,b=255},
       color={r=100,g=100,b=255},
       clickedCol={r=140,g=140,b=240},
-      label = "test",
+      label = "Back",
       clickedFunc = function()
       end
     })
