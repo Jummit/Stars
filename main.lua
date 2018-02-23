@@ -1,4 +1,5 @@
 function love.load()
+  math.randomseed(os.time())
   galaxy = require "libs.world.galaxy"
   gamestates = require "libs.gamestates"
 
@@ -6,7 +7,7 @@ function love.load()
   galaxy = galaxy.new()
   localSystem = 1
   localPlanet = 1
-  gamestate = "inSystem"
+  gamestate = "onPlanet"
 end
 
 function love.update(dt)

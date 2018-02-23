@@ -17,5 +17,15 @@ return {
     },
     system = new("world/system")
   },
+  tiles = {
+    grass = new("tiles/grass"),
+    doorLower = new("tiles/doorLower"),
+    doorUpper = new("tiles/doorUpper"),
+    roof = new("tiles/roof"),
+    roofLeft = new("tiles/roofLeft"),
+    roofRight = new("tiles/roofRight"),
+    wall = new("tiles/wall"),
+    window = new("tiles/window"),
+  },
   spaceship = new("spaceship")
 }
