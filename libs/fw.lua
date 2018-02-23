@@ -1,12 +1,9 @@
 local fw = {}
-function fw.boxClicked(box)
+function fw.boxClicked(box, checkMouse)
   local mouseX, mouseY = love.mouse.getPosition()
-  if box.x and box.y and box.w and box.h then
+  if box.x and box.y and box.w and box.h and ((not checkMouse) or love.mouse.isDown("l")) then
     return box.x<=mouseX and box.y<=mouseY and box.x+box.w>mouseX and box.y+box.h>mouseY
   end
-end
-function fw.getCenter(box, text)
-
 end
 function fw.update(elements, dt)
   for _, element in pairs(elements) do
