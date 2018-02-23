@@ -1,6 +1,6 @@
 local new = function(path)
   return {
-    image = love.graphics.newImage(path),
+    image = love.graphics.newImage("/assets/"..path..".png"),
     draw = function(self, ...)
       love.graphics.draw(self.image, ...)
     end
@@ -13,8 +13,9 @@ return {
   end,
   world = {
     planet = {
-      water = new("/assets/world/planet/water.png")
+      water = new("world/planet/water")
     },
-    system = new("/assets/world/system.png")
-  }
+    system = new("world/system")
+  },
+  spaceship = new("spaceship")
 }

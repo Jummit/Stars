@@ -1,5 +1,4 @@
 local fw = require "libs.fw"
-
 return {
   elements = {
     buttons = fw.new("button", {
@@ -14,10 +13,12 @@ return {
     })
   },
   update = function(dt)
+    spaceship:update(dt)
   end,
   draw = function()
     love.graphics.setBackgroundColor(0, 0, 0)
     love.graphics.clear()
     galaxy.systems[localSystem]:draw()
+    spaceship:draw()
   end
 }

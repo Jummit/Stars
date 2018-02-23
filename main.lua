@@ -2,6 +2,7 @@ function love.load()
   galaxy = require "libs.world.galaxy"
   gamestates = require "libs.gamestates"
 
+  spaceship = require "libs.spaceship"
   galaxy = galaxy.new()
   localSystem = 1
   localPlanet = 1
