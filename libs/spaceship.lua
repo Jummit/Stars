@@ -8,16 +8,13 @@ local spaceship = {
     x = 0,
     y = 0
   },
-  getPlanetOff = function(self)
-    return (-self.x)+w/2, (-self.y)+h/2
-  end,
   acceleration = 1.8,
   rotationAcceleration = 3,
   brakeStrenght = 0.01,
   icon = assets.spaceship,
   rotation = 0,
   draw = function(self)
-    local offX, offY = self:getPlanetOff()
+    local offX, offY = mathUtils.getThingOffset(spaceship)
     self.icon:draw(
       self.x+offX,
       self.y+offY,
