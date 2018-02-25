@@ -1,31 +1,31 @@
 local new = function(path)
   return {
-    image = love.graphics.newImage("/assets/"..path..".png"),
+    image = love.graphics.newImage(path),
     draw = function(self, ...)
       love.graphics.draw(self.image, ...)
     end
   }
 end
 
-return {
-  draw = function(self)
-    self.icon:draw(self.x, self.y)
-  end,
-  world = {
-    planet = {
-      water = new("world/planet/water")
-    },
-    system = new("world/system")
-  },
-  tiles = {
-    grass = new("tiles/grass"),
-    doorLower = new("tiles/doorLower"),
-    doorUpper = new("tiles/doorUpper"),
-    roof = new("tiles/roof"),
-    roofLeft = new("tiles/roofLeft"),
-    roofRight = new("tiles/roofRight"),
-    wall = new("tiles/wall"),
-    window = new("tiles/window"),
-  },
-  spaceship = new("spaceship")
-}
+local function loadImages(path)
+  local images = {}
+  local paths = love.filesystem.getDirectoryItems(path)
+  for fileNum = 1, #paths do
+    local file = paths[fileNum]
+    local pathToFile = path.."/"..file
+    local fileName = string.gsub(file,"%.png$", "")
+    if love.filesystem.isDirectory(pathToFile) then
+      images[fileName] = loadImages(pathToFile)
+    else
+      images[fileName] = new(pathToFile)
+    end
+  end
+  return images
+end
+
+local images = loadImages("/assets")
+print(images.world.planet.water)
+images.draw = function(self)
+  self.icon:draw(self.x, self.y)
+end
+return images
