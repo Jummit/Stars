@@ -50,8 +50,8 @@ local spaceship = {
     self.y = self.y + self.move.y
 
     if love.keyboard.isDown("b") then
-      self.move.x = mathUtils.reduceValue(self.move.x, self.brakeStrenght)
-      self.move.y = mathUtils.reduceValue(self.move.y, self.brakeStrenght)
+      self.move.x = mathUtils.reduce(self.move.x, self.brakeStrenght)
+      self.move.y = mathUtils.reduce(self.move.y, self.brakeStrenght)
     end
   end
 }
