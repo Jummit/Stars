@@ -26,11 +26,11 @@ local spaceship = {
     )
   end,
   update = function(self, dt)
-    if love.keyboard.isDown("d") then
+    if love.keyboard.isDown("d") and self.move.x == 0 and self.move.y == 0 then
       local localSystem = galaxy.systems[localSystem]
       for planetNum = 1, #localSystem.planets do
         local planet = localSystem.planets[planetNum]
-        if mathUtils.getDistance(self.x, self.y, planet.x, planet.y) < 40 then
+        if mathUtils.getDistance(self.x, self.y, planet.x, planet.y) < planet.icon.image:getWidth()/2 then
           localPlanet = planetNum
           gamestate = "onPlanet"
         end

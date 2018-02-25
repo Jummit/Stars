@@ -11,8 +11,8 @@ return {
       draw = function(self)
         local offX, offY = spaceship:getPlanetOff()
         self.icon:draw(
-          self.x+offX,
-          self.y+offY
+          self.x+offX-self.icon.image:getWidth()/2,
+          self.y+offY-self.icon.image:getHeight()/2
         )
       end,
       x = math.random(-systemWidth/2, systemWidth/2), y = math.random(-systemHeight/2, systemHeight/2)
