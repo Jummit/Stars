@@ -18,7 +18,12 @@ local spaceship = {
   rotation = 0,
   draw = function(self)
     local offX, offY = self:getPlanetOff()
-    self.icon:draw(self.x+offX-self.icon.image:getWidth()/2, self.y+offY-self.icon.image:getHeight()/2, self.rotation)
+    self.icon:draw(
+      self.x+offX,
+      self.y+offY,
+      self.rotation,
+      1,1,10,10
+    )
   end,
   update = function(self, dt)
     if love.keyboard.isDown("d") then
