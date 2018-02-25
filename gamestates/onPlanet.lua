@@ -1,5 +1,8 @@
 return {
   update = function(dt)
+    if love.keyboard.isDown("escape") then
+      gamestate = "inSystem"
+    end
   end,
   draw = function()
     love.graphics.setBackgroundColor(0, 0, 0)

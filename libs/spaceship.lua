@@ -1,4 +1,5 @@
 local assets = require "libs.assets"
+local mathUtils = require "libs.math"
 local w, h = love.graphics.getDimensions()
 local spaceship = {
   x = w/2,
@@ -11,7 +12,7 @@ local spaceship = {
     return (-self.x)+w/2, (-self.y)+h/2
   end,
   acceleration = 0.4,
-  rotationAcceleration = 1,
+  rotationAcceleration = 3,
   brakeStrenght = 0.5,
   icon = assets.spaceship,
   rotation = 0,
@@ -20,6 +21,16 @@ local spaceship = {
     self.icon:draw(self.x+offX-self.icon.image:getWidth()/2, self.y+offY-self.icon.image:getHeight()/2, self.rotation)
   end,
   update = function(self, dt)
+    if love.keyboard.isDown("d") then
+      local localSystem = galaxy.systems[localSystem]
+      for planetNum = 1, #localSystem.planets do
+        local planet = localSystem.planets[planetNum]
+        if mathUtils.getDistance(self.x, self.y, planet.x, planet.y) < 40 then
+          localPlanet = planetNum
+          gamestate = "onPlanet"
+        end
+      end
+    end
     if love.keyboard.isDown("up") then
       self.move.x = self.move.x + math.sin(self.rotation)*dt*self.acceleration
       self.move.y = self.move.y - math.cos(self.rotation)*dt*self.acceleration
