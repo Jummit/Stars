@@ -1,16 +1,19 @@
-local assets = require "libs.assets"
+  local assets = require "libs.assets"
 
 return {
   new = function(tileset, w, h)
     local map = {
       layers = {{}},
       tileset = tileset,
+      getDimensions = function(self, layer)
+        return #self.layers[layer][1]*w, #self.layers[layer]*h
+      end,
       draw = function(self, offX, offY)
         for layerNum = 1, #self.layers do
           for x = 1, #self.layers[layerNum] do
             for y = 1, #self.layers[layerNum][x] do
               local tile = self.layers[layerNum][x][y]
-              assets.tiles[tile]:draw((x-1)*w,(y-1)*w)
+              assets.tiles[tile]:draw(((x-1)*w)+offX,((y-1)*w)+offY)
             end
           end
         end

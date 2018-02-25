@@ -25,8 +25,15 @@ mathUtils = {
   end
 }
 
-mathUtils.getThingOffset = function(thing)
-  return mathUtils.getOffset(thing.x, w), mathUtils.getOffset(thing.y, h)
+mathUtils.getThingOffset = function(thing, mapW, mapH)
+  local offX, offY = mathUtils.getOffset(thing.x, w), mathUtils.getOffset(thing.y, h)
+  if mapW and mapH then
+    if offX > 0 then offX = 0 end
+    if offY > 0 then offY = 0 end
+    if offX < -mapW+w then offX = -mapW+w end
+    if offY < -mapH+h then offY = -mapH+h end
+  end
+  return offX, offY
 end
 
 return mathUtils

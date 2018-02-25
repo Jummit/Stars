@@ -11,8 +11,9 @@ return {
     love.graphics.setBackgroundColor(0, 0, 0)
     love.graphics.clear()
 
-    local offX, offY = mathUtils.getThingOffset(player)
-    galaxy.systems[localSystem].planets[localPlanet].map:draw(offX, offY)
+    local planet = galaxy.systems[localSystem].planets[localPlanet]
+    local offX, offY = mathUtils.getThingOffset(player, planet.map:getDimensions(1))
+    planet.map:draw(offX, offY)
     player:draw()
   end
 }

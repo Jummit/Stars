@@ -4,10 +4,11 @@ function love.load()
   gamestates = require "libs.gamestates"
 
   spaceship = require "libs.spaceship"
+  player = require "libs.player"
   galaxy = galaxy.new()
   localSystem = 1
   localPlanet = 1
-  gamestate = "inSystem"
+  gamestate = "onPlanet"
 end
 
 function love.update(dt)
