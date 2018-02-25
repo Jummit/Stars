@@ -11,9 +11,9 @@ local spaceship = {
   getPlanetOff = function(self)
     return (-self.x)+w/2, (-self.y)+h/2
   end,
-  acceleration = 0.4,
+  acceleration = 1.8,
   rotationAcceleration = 3,
-  brakeStrenght = 0.5,
+  brakeStrenght = 0.01,
   icon = assets.spaceship,
   rotation = 0,
   draw = function(self)
@@ -50,14 +50,32 @@ local spaceship = {
     self.y = self.y + self.move.y
 
     if love.keyboard.isDown("b") then
-      self.move.x = self.move.x - self.brakeStrenght
-      self.move.y = self.move.y - self.brakeStrenght
-    end
-    if love.keyboard.isDown("b") then
-      if self.rotation > 0 then
-        self.rotation = self.rotation - 0.05
-      elseif self.rotation < 0 then
-        self.rotation = self.rotation + 0.05
+      if self.move.y > 0 then
+        if self.move.y-self.brakeStrenght < 0 then
+          self.move.y = 0
+        else
+          self.move.y = self.move.y - self.brakeStrenght
+        end
+      else
+        if self.move.y+self.brakeStrenght > 0 then
+          self.move.y = 0
+        else
+          self.move.y = self.move.y + self.brakeStrenght
+        end
+      end
+
+      if self.move.x > 0 then
+        if self.move.x-self.brakeStrenght < 0 then
+          self.move.x = 0
+        else
+          self.move.x = self.move.x - self.brakeStrenght
+        end
+      else
+        if self.move.x+self.brakeStrenght > 0 then
+          self.move.x = 0
+        else
+          self.move.x = self.move.x + self.brakeStrenght
+        end
       end
     end
   end
