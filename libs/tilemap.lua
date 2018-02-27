@@ -13,7 +13,7 @@ return {
           for x = 1, #self.layers[layerNum] do
             for y = 1, #self.layers[layerNum][x] do
               local tile = self.layers[layerNum][x][y]
-              assets.tiles[tile]:draw(((x-1)*w)+offX,((y-1)*w)+offY)
+              self.tileset[tile]:draw(((x-1)*w)+offX,((y-1)*w)+offY)
             end
           end
         end
