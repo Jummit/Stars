@@ -18,10 +18,18 @@ return {
     self.icon:draw(self.x+offX, self.y+offY)
   end,
   update = function(self, dt)
+    local x, y = 0, 0
+    local planet = galaxy.systems[localSystem].planets[localPlanet]
+    local offX, offY = mathUtils.getThingOffset(self, planet.map:getDimensions(1))
     for key, move in pairs(self.moves) do
       if pressed(key) then
-        self.x = self.x + move[1] * self.speed * dt
-        self.y = self.y + move[2] * self.speed * dt
+        x =  move[1] * self.speed * dt
+        y =  move[2] * self.speed * dt
+
+        if not planet.map:collide(offX, offY, self.x+x, self.y+y, 23, 28) then
+          self.x = self.x+x
+          self.y = self.y+y
+        end
       end
     end
   end

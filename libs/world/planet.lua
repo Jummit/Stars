@@ -8,6 +8,7 @@ local tileset = {}
 for tileName, tileAsset in pairs(tiles) do
   tileset[tileName] = tileAsset
 end
+tileset.wall.solid = true
 return {
   new = function()
     local planet = {

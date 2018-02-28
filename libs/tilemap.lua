@@ -1,4 +1,5 @@
 local assets = require "libs.assets"
+local mathUtils = require "libs.math"
 
 return {
   new = function(tileset, w, h, scale, rotation)
@@ -47,6 +48,17 @@ return {
         for x = x1, x2 do
           for y = y1, y2 do
             self:setTile(layer, x, y, tile)
+          end
+        end
+      end,
+      collide = function(self, offX, offY, x, y, w, h)
+        for layerNum = 1, #self.layers do
+          local layer = self.layers[layerNum]
+          for tileX = 1, #layer do
+            for tileY = 1, #layer[tileX] do
+              local tile = self.tileset[layer[tileX][tileY]]
+              if tile.solid and mathUtils.collideBoxes((tileX-1)*self.w, (tileY-1)*self.h, self.w, self.h, x, y, w, h) then return true end
+            end
           end
         end
       end
