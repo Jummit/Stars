@@ -1,19 +1,36 @@
-  local assets = require "libs.assets"
+local assets = require "libs.assets"
 
 return {
-  new = function(tileset, w, h)
+  new = function(tileset, w, h, scale, rotation)
     local map = {
+      w = w, h = h,
       layers = {{}},
       tileset = tileset,
+      scale = scale or 1,
+      rotation = rotation or 0,
       getDimensions = function(self, layer)
         return #self.layers[layer][1]*w, #self.layers[layer]*h
       end,
+      scale = scale or 1,
+      rotation = rotation or 0,
       draw = function(self, offX, offY)
+        local w, h = self.w*self.scale, self.h*self.scale
         for layerNum = 1, #self.layers do
           for x = 1, #self.layers[layerNum] do
             for y = 1, #self.layers[layerNum][x] do
               local tile = self.layers[layerNum][x][y]
-              self.tileset[tile]:draw(((x-1)*w)+offX,((y-1)*w)+offY)
+              if tile then
+                if self.rotation ~= 0 then
+                  local width, height = self:getDimensions(1)
+                  love.graphics.translate(offX, offY)
+                  love.graphics.rotate(self.rotation)
+                  self.tileset[tile]:draw(((x-1)*w),((y-1)*h), 0, self.scale, self.scale, height/2, width/2)
+                  love.graphics.rotate(-self.rotation)
+                  love.graphics.translate(-offX, -offY)
+                else
+                  self.tileset[tile]:draw(((x-1)*w)+offX,((y-1)*h)+offY, 0, self.scale, self.scale)
+                end
+              end
             end
           end
         end

@@ -1,6 +1,12 @@
 local assets = require "libs.assets"
 local mathUtils = require "libs.math"
+local tilemap = require "libs.tilemap"
 local w, h = love.graphics.getDimensions()
+local tiles = assets.tiles.spaceship
+local tileset = {}
+for tileName, tileAsset in pairs(tiles) do
+  tileset[tileName] = tileAsset
+end
 local spaceship = {
   x = w/2,
   y = h/2,
@@ -15,14 +21,11 @@ local spaceship = {
   rotation = 0,
   draw = function(self)
     local offX, offY = mathUtils.getThingOffset(spaceship)
-    self.icon:draw(
-      self.x+offX,
-      self.y+offY,
-      self.rotation,
-      1,1,10,10
-    )
+    local drawX, drawY = self.x+offX, self.y+offY
+    self.tilemap:draw(drawX, drawY)
   end,
   update = function(self, dt)
+    self.tilemap.rotation = self.rotation
     if love.keyboard.isDown("d") and self.move.x == 0 and self.move.y == 0 then
       local localSystem = galaxy.systems[localSystem]
       for planetNum = 1, #localSystem.planets do
@@ -50,6 +53,21 @@ local spaceship = {
       self.move.x = mathUtils.reduce(self.move.x, self.brakeStrenght)
       self.move.y = mathUtils.reduce(self.move.y, self.brakeStrenght)
     end
-  end
+  end,
+  tilemap = tilemap.new(tileset, 30, 30, 0.3)
 }
+spaceship.tilemap.layers[1] = {
+  {false, false, "engine"},
+  {false, "plating", "plating"},
+  {"cockpit", "plating", "engine"},
+  {false, "plating", "plating"},
+  {false, false, "engine"},
+}
+--[[
+  e
+ pp
+cpp
+ pp
+  e
+]]
 return spaceship
