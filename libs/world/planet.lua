@@ -1,6 +1,8 @@
 local assets = require "libs.assets"
 local tilemap = require "libs.tilemap"
 local mathUtils = require "libs.math"
+local npcs = require "libs.npcs"
+
 local systemWidth, systemHeight = 1000, 1000
 local w, h = love.graphics.getDimensions()
 local tiles = assets.tiles.planet
@@ -12,6 +14,15 @@ tileset.wall.solid = true
 return {
   new = function()
     local planet = {
+      npcs = {
+        npcs.new({
+          x=math.random(1, w), y=math.random(1, h),
+          icon="basic",
+          interactedFunc = function(self)
+            error("interacted")
+          end
+        })
+      },
       map = tilemap.new(tileset, 30, 30),
       icon = assets.world.planet.water,
       draw = function(self)

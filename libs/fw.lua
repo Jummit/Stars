@@ -1,5 +1,6 @@
 local fw = {}
-function fw.boxClicked(box, checkMouse)
+function fw.boxClicked(box, checkMouse, offX, offY)
+  local offX, offY = offX or 0, offY or 0
   local mouseX, mouseY = love.mouse.getPosition()
   if box.x and box.y and box.w and box.h and ((not checkMouse) or love.mouse.isDown("l")) then
     return box.x<=mouseX and box.y<=mouseY and box.x+box.w>mouseX and box.y+box.h>mouseY
