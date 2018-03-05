@@ -8,7 +8,7 @@ function love.load()
   galaxy = galaxy.new()
   localSystem = 1
   localPlanet = 1
-  gamestate = "onPlanet"
+  gamestate = "inventory"
 end
 
 function love.update(dt)
