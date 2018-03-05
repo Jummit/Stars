@@ -28,6 +28,9 @@ end
 fw.elements = {}
 fw.elements.button = {
   clicked = false,
+  clickedCol = {r=200,g=200,b=200},
+  color = {r=255, g=255, b=255},
+  textColor = {r=20, g=20, b=20},
   draw = function(self)
     if self.clicked then
       love.graphics.setColor(self.clickedCol.r, self.clickedCol.g, self.clickedCol.b)
@@ -36,13 +39,19 @@ fw.elements.button = {
       love.graphics.setColor(self.color.r, self.color.g, self.color.b)
       love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
     end
-    love.graphics.setColor(self.textColor.r, self.textColor.g, self.textColor.b)
-    local textX = (self.x+self.w/2)-love.graphics.getFont():getWidth(self.label)/2
-    local textY = self.y+self.h/2-love.graphics.getFont():getHeight(self.label)/2
-    love.graphics.print(self.label, textX, textY)
+    if self.label then
+      love.graphics.setColor(self.textColor.r, self.textColor.g, self.textColor.b)
+      local textX = (self.x+self.w/2)-love.graphics.getFont():getWidth(self.label)/2
+      local textY = self.y+self.h/2-love.graphics.getFont():getHeight(self.label)/2
+      love.graphics.print(self.label, textX, textY)
+    end
   end
 }
-
+function fw.positionHelp()
+  local x, y = love.mouse.getPosition()
+  love.graphics.setColor(255, 255, 255)
+  love.graphics.print("x"..x.." y"..y, x+20, y)
+end
 function fw.new(type, args)
   return setmetatable(args,{__index=fw.elements[type]})
 end
