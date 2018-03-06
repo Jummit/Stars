@@ -1,5 +1,3 @@
-local assets = require "libs.assets"
-
 local function new(tab)
   return setmetatable(tab,{
     __index = {

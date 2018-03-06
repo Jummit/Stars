@@ -1,5 +1,3 @@
-local w, h = love.graphics.getDimensions()
-local assets = require "libs.assets"
 local pressed = love.keyboard.isDown
 
 return {

@@ -1,11 +1,4 @@
-local assets = require "libs.assets"
-local tilemap = require "libs.tilemap"
-local mathUtils = require "libs.math"
-local npcs = require "libs.npcs"
-local items = require "libs.items"
-
 local systemWidth, systemHeight = 1000, 1000
-local w, h = love.graphics.getDimensions()
 local tiles = assets.tiles.planet
 local tileset = {}
 for tileName, tileAsset in pairs(tiles) do

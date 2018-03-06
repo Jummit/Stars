@@ -1,9 +1,3 @@
-local assets = require "libs.assets"
-local mathUtils = require "libs.math"
-local tilemap = require "libs.tilemap"
-local items = require "libs.items"
-local quest = require "libs.quest"
-local w, h = love.graphics.getDimensions()
 local tiles = assets.tiles.spaceship
 local tileset = {}
 for tileName, tileAsset in pairs(tiles) do
@@ -21,7 +15,7 @@ local spaceship = {
         return #spaceship.inventory>4
       end,
       finishedFunc = function()
-        
+
       end
     })
   },

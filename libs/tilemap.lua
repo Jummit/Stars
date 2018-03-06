@@ -1,6 +1,3 @@
-local assets = require "libs.assets"
-local mathUtils = require "libs.math"
-
 return {
   new = function(tileset, w, h, scale, rotation)
     local map = {

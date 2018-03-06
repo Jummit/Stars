@@ -1,5 +1,3 @@
-local fw = require "libs.fw"
-
 local gamestates = {}
 local gamestateFiles = love.filesystem.getDirectoryItems("/gamestates/")
 for gamestateFileNum = 1, #gamestateFiles do

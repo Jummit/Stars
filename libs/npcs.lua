@@ -1,6 +1,3 @@
-local assets = require "libs.assets"
-local fw = require "libs.fw"
-
 --[[{
   quests = {
 

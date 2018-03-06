@@ -1,17 +1,25 @@
 function love.load()
   math.randomseed(os.time())
+  w, h = love.graphics.getDimensions()
+  assets = require "libs.assets"
+  tilemap = require "libs.tilemap"
+  quest = require "libs.quest"
+  items = require "libs.items"
+  planet = require "libs.world.planet"
   galaxy = require "libs.world.galaxy"
+  system = require "libs.world.system"
   gamestates = require "libs.gamestates"
-
   spaceship = require "libs.spaceship"
   player = require "libs.player"
-  assets = require "libs.assets"
+  mathUtils = require "libs.math"
+  npcs = require "libs.npcs"
+  fw = require "libs.fw"
+
   galaxy = galaxy.new()
   localSystem = 1
   localPlanet = 1
   gamestate = "inventory"
   lastSwitch = 1
-  w, h = love.graphics.getDimensions()
   function changeState(state)
     if lastSwitch > 0.2 then
       gamestate = state

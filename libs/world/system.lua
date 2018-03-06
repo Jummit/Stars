@@ -1,7 +1,4 @@
-local assets = require "libs.assets"
-local planet = require "libs.world.planet"
-local windowW, windowH = love.graphics.getDimensions()
-local galaxyWidth, galaxyHeight = windowW-40, windowH-40
+local galaxyWidth, galaxyHeight = w-40, h-40
 
 return {
   new = function()

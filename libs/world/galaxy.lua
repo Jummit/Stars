@@ -1,6 +1,3 @@
-local assets = require "libs.assets"
-local system = require "libs.world.system"
-
 return {
   new = function()
     local galaxy = {
