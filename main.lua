@@ -5,17 +5,22 @@ function love.load()
 
   spaceship = require "libs.spaceship"
   player = require "libs.player"
+  assets = require "libs.assets"
   galaxy = galaxy.new()
   localSystem = 1
   localPlanet = 1
   gamestate = "inventory"
   lastSwitch = 1
+  w, h = love.graphics.getDimensions()
   function changeState(state)
     if lastSwitch > 0.2 then
       gamestate = state
       lastSwitch = 0
     end
   end
+  love.window.setMode(love.window.getDesktopDimensions())
+  love.window.setTitle("Stars - a space exploration game")
+  love.window.setIcon(assets.tiles.planet.wall.image:getData())
 end
 
 function love.update(dt)

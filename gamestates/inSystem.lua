@@ -10,16 +10,6 @@ return {
       clickedFunc = function()
         changeState("galaxyMap")
       end
-    }),
-    inventory = fw.new("button", {
-      x=620,y=540,w=140,h=40,
-      textColor={r=200,g=200,b=255},
-      color={r=100,g=100,b=255},
-      clickedCol={r=140,g=140,b=240},
-      label = "Inventory",
-      clickedFunc = function()
-        changeState("inventory")
-      end
     })
   },
   update = function(dt)
