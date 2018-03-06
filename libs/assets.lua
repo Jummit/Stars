@@ -2,6 +2,7 @@ local new = function(path)
   return {
     image = love.graphics.newImage(path),
     draw = function(self, ...)
+      love.graphics.setColor(255, 255, 255)
       love.graphics.draw(self.image, ...)
     end
   }
