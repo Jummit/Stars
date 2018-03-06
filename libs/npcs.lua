@@ -28,7 +28,7 @@ return {
           update = function(self, dt, offx, offy)
             if self.updateFunc then self:updateFunc(dt) end
             if self.interactedFunc and mathUtils.getDistance(self.x, self.y, player.x, player.y) <= 40 and fw.boxClicked({x=self.x+offx, y=self.y+offy, w=40, h=40}, true) then
-              self:interactedFunc()
+              return self:interactedFunc()
             end
           end
         }

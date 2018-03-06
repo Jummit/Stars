@@ -1,11 +1,31 @@
 local fw = require "libs.fw"
 
+local function getItemPos(itemNum)
+  return 50+(itemNum-1)*40, 100
+end
+local selectedItem = 1
+local descriptionLineLegth = 20
 local state = "ship"
 statedraws = {
   inventory = {
     draw = function()
+      for itemNum = 1, #spaceship.inventory do
+        spaceship.inventory[itemNum]:draw(getItemPos(itemNum))
+      end
+      local item = spaceship.inventory[selectedItem]
+      love.graphics.print(item.name, 580, 250)
+      for i = 1, #item.description/descriptionLineLegth do
+        love.graphics.print(string.sub(item.description, (i-1)*descriptionLineLegth, (i)*descriptionLineLegth-1), 540, 270+(i-1)*20)
+      end
+      item.icon:draw(540, 100, 0, 5)
     end,
     update = function(dt)
+      for itemNum = 1, #spaceship.inventory do
+        local x, y = getItemPos(itemNum)
+        if fw.boxClicked({x=x,y=y,w=40,h=40}, true) then
+          selectedItem = itemNum
+        end
+      end
     end
   },
   quest = {

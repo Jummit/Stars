@@ -10,7 +10,9 @@ return {
     player:update(dt)
     for npcNum = 1, #planet.npcs do
       local npc = planet.npcs[npcNum]
-      npc:update(dt, offX, offY)
+      if npc:update(dt, offX, offY) == "destroy" then
+        table.remove(planet.npcs, npcNum)
+      end
     end
   end,
   draw = function()

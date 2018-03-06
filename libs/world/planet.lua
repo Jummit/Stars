@@ -2,6 +2,7 @@ local assets = require "libs.assets"
 local tilemap = require "libs.tilemap"
 local mathUtils = require "libs.math"
 local npcs = require "libs.npcs"
+local items = require "libs.items"
 
 local systemWidth, systemHeight = 1000, 1000
 local w, h = love.graphics.getDimensions()
@@ -19,7 +20,8 @@ return {
           x=math.random(1, w), y=math.random(1, h),
           icon="basic",
           interactedFunc = function(self)
-            error("interacted")
+            table.insert(spaceship.inventory, items.apple)
+            return "destroy"
           end
         })
       },

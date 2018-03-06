@@ -1,6 +1,7 @@
 local assets = require "libs.assets"
 local mathUtils = require "libs.math"
 local tilemap = require "libs.tilemap"
+local items = require "libs.items"
 local w, h = love.graphics.getDimensions()
 local tiles = assets.tiles.spaceship
 local tileset = {}
@@ -13,6 +14,9 @@ local spaceship = {
   move = {
     x = 0,
     y = 0
+  },
+  inventory = {
+    items.test, items.apple, items.apple, items.test
   },
   acceleration = 1.8,
   rotationAcceleration = 3,
