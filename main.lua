@@ -9,9 +9,17 @@ function love.load()
   localSystem = 1
   localPlanet = 1
   gamestate = "inventory"
+  lastSwitch = 1
+  function changeState(state)
+    if lastSwitch > 0.2 then
+      gamestate = state
+      lastSwitch = 0
+    end
+  end
 end
 
 function love.update(dt)
+  lastSwitch = lastSwitch+dt
   gamestates.update(gamestate, dt)
   for questNum = 1, #spaceship.quests do
     local quest = spaceship.quests[questNum]

@@ -2,7 +2,7 @@ local fw = require "libs.fw"
 
 return {
   update = function(dt)
-    if love.keyboard.isDown("escape") then gamestate = "inSystem" end
+    if love.keyboard.isDown("escape") then changeState("inSystem") end
     for systemNum = 1, #galaxy.systems do
       local box = {
         x = galaxy.systems[systemNum].x,

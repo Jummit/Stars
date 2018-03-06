@@ -57,7 +57,7 @@ statedraws = {
 }
 return {
   update = function(dt)
-    if love.keyboard.isDown("escape") then gamestate = "inSystem" end
+    if love.keyboard.isDown("escape") then changeState("inSystem") end
     statedraws[state].update(dt)
   end,
   draw = function()

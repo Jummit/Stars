@@ -8,7 +8,7 @@ return {
       clickedCol={r=140,g=140,b=240},
       label = "Galaxy Map",
       clickedFunc = function()
-        gamestate = "galaxyMap"
+        changeState("galaxyMap")
       end
     }),
     inventory = fw.new("button", {
@@ -18,11 +18,12 @@ return {
       clickedCol={r=140,g=140,b=240},
       label = "Inventory",
       clickedFunc = function()
-        gamestate = "inventory"
+        changeState("inventory")
       end
     })
   },
   update = function(dt)
+    if love.keyboard.isDown("escape") then changeState("inventory") end
     spaceship:update(dt)
   end,
   draw = function()

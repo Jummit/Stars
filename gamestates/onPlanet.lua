@@ -5,7 +5,7 @@ return {
     local planet = galaxy.systems[localSystem].planets[localPlanet]
     local offX, offY = mathUtils.getThingOffset(player, planet.map:getDimensions(1))
     if love.keyboard.isDown("escape") then
-      gamestate = "inSystem"
+      changeState("inSystem")
     end
     player:update(dt)
     for npcNum = 1, #planet.npcs do
