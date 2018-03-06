@@ -13,6 +13,13 @@ end
 
 function love.update(dt)
   gamestates.update(gamestate, dt)
+  for questNum = 1, #spaceship.quests do
+    local quest = spaceship.quests[questNum]
+    if quest:update() then
+      quest.finishedFunc()
+      table.remove(spaceship.quests, questNum)
+    end
+  end
 end
 
 function love.draw()

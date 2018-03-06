@@ -2,6 +2,7 @@ local assets = require "libs.assets"
 local mathUtils = require "libs.math"
 local tilemap = require "libs.tilemap"
 local items = require "libs.items"
+local quest = require "libs.quest"
 local w, h = love.graphics.getDimensions()
 local tiles = assets.tiles.spaceship
 local tileset = {}
@@ -11,6 +12,19 @@ end
 local spaceship = {
   x = w/2,
   y = h/2,
+  quests = {
+    quest.new({
+      name = "Collect Items!",
+      icon = assets.items.apple,
+      description = "Collect an item on a planet!",
+      finished = function()
+        return #spaceship.inventory>4
+      end,
+      finishedFunc = function()
+        
+      end
+    })
+  },
   move = {
     x = 0,
     y = 0

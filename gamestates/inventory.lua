@@ -4,7 +4,7 @@ local function getItemPos(itemNum)
   return 50+(itemNum-1)*40, 100
 end
 local selectedItem = 1
-local descriptionLineLegth = 20
+local descriptionLineLegth = 30
 local state = "ship"
 statedraws = {
   inventory = {
@@ -13,11 +13,11 @@ statedraws = {
         spaceship.inventory[itemNum]:draw(getItemPos(itemNum))
       end
       local item = spaceship.inventory[selectedItem]
+      item.icon:draw(540, 100, 0, 5)
       love.graphics.print(item.name, 580, 250)
-      for i = 1, #item.description/descriptionLineLegth do
+      for i = 1, #item.description/descriptionLineLegth+1 do
         love.graphics.print(string.sub(item.description, (i-1)*descriptionLineLegth, (i)*descriptionLineLegth-1), 540, 270+(i-1)*20)
       end
-      item.icon:draw(540, 100, 0, 5)
     end,
     update = function(dt)
       for itemNum = 1, #spaceship.inventory do
@@ -30,6 +30,14 @@ statedraws = {
   },
   quest = {
     draw = function()
+      for questNum = 1, #spaceship.quests do
+        local quest = spaceship.quests[questNum]
+        quest.icon:draw(540, 100, 0, 5)
+        love.graphics.print(quest.name, 580, 250)
+        for i = 1, #quest.description/descriptionLineLegth+1 do
+          love.graphics.print(string.sub(quest.description, (i-1)*descriptionLineLegth, (i)*descriptionLineLegth-1), 540, 270+(i-1)*20)
+        end
+      end
     end,
     update = function(dt)
     end
