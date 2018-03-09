@@ -1,33 +1,34 @@
 function love.load()
   math.randomseed(os.time())
+  love.window.setMode(love.window.getDesktopDimensions())
+  love.window.setTitle("Stars - a space exploration game")
   w, h = love.graphics.getDimensions()
-  assets = require "libs.assets"
-  tilemap = require "libs.tilemap"
-  quest = require "libs.quest"
-  items = require "libs.items"
-  planet = require "libs.world.planet"
-  galaxy = require "libs.world.galaxy"
-  system = require "libs.world.system"
-  gamestates = require "libs.gamestates"
-  spaceship = require "libs.spaceship"
-  player = require "libs.player"
-  mathUtils = require "libs.math"
-  npcs = require "libs.npcs"
-  fw = require "libs.fw"
-
-  galaxy = galaxy.new()
   localSystem = 1
   localPlanet = 1
-  gamestate = "inventory"
+  gamestate = "onGround"
   lastSwitch = 1
+  assets = require "libs.assets"
+  tilemap = require "libs.tilemap"
+  items = require "libs.items"
+  quest = require "libs.quest"
+  spaceship = require "libs.spaceship"
+  npcs = require "libs.npcs"
+  planet = require "libs.world.planet"
+  system = require "libs.world.system"
+  galaxy = require "libs.world.galaxy"
+  galaxy = galaxy.new()
+  location = galaxy.systems[localSystem].planets[localPlanet]
+  gamestates = require "libs.gamestates"
+  player = require "libs.player"
+  mathUtils = require "libs.math"
+  fw = require "libs.fw"
+
   function changeState(state)
     if lastSwitch > 0.2 then
       gamestate = state
       lastSwitch = 0
     end
   end
-  love.window.setMode(love.window.getDesktopDimensions())
-  love.window.setTitle("Stars - a space exploration game")
   love.window.setIcon(assets.tiles.planet.wall.image:getData())
 end
 
