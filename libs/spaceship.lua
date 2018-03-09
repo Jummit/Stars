@@ -15,7 +15,7 @@ local spaceship = {
         return #spaceship.inventory>4
       end,
       finishedFunc = function()
-
+        print("test")
       end
     })
   },
@@ -44,7 +44,7 @@ local spaceship = {
         local planet = localSystem.planets[planetNum]
         if mathUtils.getDistance(self.x, self.y, planet.x, planet.y) < planet.icon.image:getWidth()/2 then
           localPlanet = planetNum
-          gamestate = "onPlanet"
+          gamestate = "onGround"
         end
       end
     end

@@ -10,7 +10,7 @@ return {
     local planet = {
       npcs = {
         npcs.new({
-          x=math.random(1, w), y=math.random(1, h),
+          x=math.random(1, 1000), y=math.random(1, 1000),
           icon="basic",
           interactedFunc = function(self)
             table.insert(spaceship.inventory, items.apple)
@@ -29,11 +29,11 @@ return {
       end,
       x = math.random(-systemWidth/2, systemWidth/2), y = math.random(-systemHeight/2, systemHeight/2)
     }
-    planet.map:setRectangle(1, 1, 1, 40, 40, "grass")
+    planet.map:setRectangle(1, 1, 1, 60, 60, "grass")
     for i = math.random(2), math.random(5) do
       local w = math.random(5, 7)
       local h = math.floor(w*1.4)
-      local x, y = math.random(h, 40-w), math.random(h, 40-w)
+      local x, y = math.random(h, 60-w), math.random(h, 60-w)
       planet.map:setRectangle(1, x, y, x+w, y+h, "wall")
     end
     return planet

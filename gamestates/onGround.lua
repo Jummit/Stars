@@ -1,17 +1,15 @@
 local mathUtils = require "libs.math"
-
 return {
   update = function(dt)
-    local planet = galaxy.systems[localSystem].planets[localPlanet]
-    local offX, offY = mathUtils.getThingOffset(player, planet.map:getDimensions(1))
+    local offX, offY = mathUtils.getThingOffset(player, location.map:getDimensions(1))
     if love.keyboard.isDown("escape") then
       changeState("inSystem")
     end
     player:update(dt)
-    for npcNum = 1, #planet.npcs do
-      local npc = planet.npcs[npcNum]
+    for npcNum = 1, #location.npcs do
+      local npc = location.npcs[npcNum]
       if npc:update(dt, offX, offY) == "destroy" then
-        table.remove(planet.npcs, npcNum)
+        location.npcs[npcNum] = nil
       end
     end
   end,
