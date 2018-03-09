@@ -33,6 +33,8 @@ mathUtils.getThingOffset = function(thing, mapW, mapH)
     if offY > 0 then offY = 0 end
     if offX < -mapW+w then offX = -mapW+w end
     if offY < -mapH+h then offY = -mapH+h end
+    if mapW < w then offX = w/2 end
+    if mapH < h then offY = h/2 end
   end
   return offX, offY
 end

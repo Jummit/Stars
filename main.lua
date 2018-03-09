@@ -11,13 +11,13 @@ function love.load()
   tilemap = require "libs.tilemap"
   items = require "libs.items"
   quest = require "libs.quest"
-  spaceship = require "libs.spaceship"
   npcs = require "libs.npcs"
   planet = require "libs.world.planet"
   system = require "libs.world.system"
   galaxy = require "libs.world.galaxy"
   galaxy = galaxy.new()
-  location = galaxy.systems[localSystem].planets[localPlanet]
+  spaceship = require "libs.spaceship"
+  location = spaceship--galaxy.systems[localSystem].planets[localPlanet]
   gamestates = require "libs.gamestates"
   player = require "libs.player"
   mathUtils = require "libs.math"

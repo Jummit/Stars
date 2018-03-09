@@ -14,6 +14,10 @@ return {
   },
   update = function(dt)
     if love.keyboard.isDown("escape") then changeState("inventory") end
+    if love.keyboard.isDown("i") then
+      location = spaceship
+      changeState("onGround")
+    end
     spaceship:update(dt)
   end,
   draw = function()

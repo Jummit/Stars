@@ -17,12 +17,11 @@ return {
     love.graphics.setBackgroundColor(0, 0, 0)
     love.graphics.clear()
 
-    local planet = galaxy.systems[localSystem].planets[localPlanet]
-    local offX, offY = mathUtils.getThingOffset(player, planet.map:getDimensions(1))
-    planet.map:draw(offX, offY)
+    local offX, offY = mathUtils.getThingOffset(player, location.map:getDimensions(1))
+    location.map:draw(offX, offY, 1, 0)
     player:draw()
-    for npcNum = 1, #planet.npcs do
-      local npc = planet.npcs[npcNum]
+    for npcNum = 1, #location.npcs do
+      local npc = location.npcs[npcNum]
       npc:draw(offX, offY)
     end
   end

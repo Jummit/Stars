@@ -34,16 +34,17 @@ local spaceship = {
   draw = function(self)
     local offX, offY = mathUtils.getThingOffset(spaceship)
     local drawX, drawY = self.x+offX, self.y+offY
-    self.tilemap:draw(drawX, drawY)
+    self.map:draw(drawX, drawY)
   end,
   update = function(self, dt)
-    self.tilemap.rotation = self.rotation
+    self.map.rotation = self.rotation
     if love.keyboard.isDown("d") and self.move.x == 0 and self.move.y == 0 then
-      local localSystem = galaxy.systems[localSystem]
-      for planetNum = 1, #localSystem.planets do
-        local planet = localSystem.planets[planetNum]
+      local system = galaxy.systems[localSystem]
+      for planetNum = 1, #system.planets do
+        local planet = system.planets[planetNum]
         if mathUtils.getDistance(self.x, self.y, planet.x, planet.y) < planet.icon.image:getWidth()/2 then
           localPlanet = planetNum
+          location = galaxy.systems[localSystem].planets[localPlanet]
           gamestate = "onGround"
         end
       end
@@ -66,9 +67,10 @@ local spaceship = {
       self.move.y = mathUtils.reduce(self.move.y, self.brakeStrenght)
     end
   end,
-  tilemap = tilemap.new(tileset, 30, 30, 0.3)
+  map = tilemap.new(tileset, 30, 30, 0.3),
+  npcs = {}
 }
-spaceship.tilemap.layers[1] = {
+spaceship.map.layers[1] = {
   {false, false, "engine"},
   {false, "plating", "plating"},
   {"cockpit", "plating", "engine"},
