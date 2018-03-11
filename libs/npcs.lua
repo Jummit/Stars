@@ -15,17 +15,24 @@ return {
     return setmetatable(tab,
       {
         __index = {
+          interacted = false,
           draw = function(self, offx, offy)
             if type(self.icon) == "string" then
               self.icon = assets.npcs[tab.icon]
             end
             self.icon:draw(self.x+offx, self.y+offy)
-            --love.graphics.rectangle("fill", self.x+offx, self.y+offy, 40, 40)
           end,
           update = function(self, dt, offx, offy)
             if self.updateFunc then self:updateFunc(dt) end
-            if self.interactedFunc and mathUtils.getDistance(self.x, self.y, player.x, player.y) <= 40 and fw.boxClicked({x=self.x+offx, y=self.y+offy, w=40, h=40}, true) then
-              return self:interactedFunc()
+            if mathUtils.getDistance(self.x, self.y, player.x, player.y) <= 40 and fw.boxClicked({x=self.x+offx, y=self.y+offy, w=40, h=40}, true) then
+              if self.dialog then
+                localDialogNPC = self
+                localDialog = self.dialog
+                newDialog = true
+              end
+              if self.interactedFunc then
+                return self:interactedFunc()
+              end
             end
           end
         }

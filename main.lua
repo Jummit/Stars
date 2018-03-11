@@ -17,7 +17,7 @@ function love.load()
   galaxy = require "libs.world.galaxy"
   galaxy = galaxy.new()
   spaceship = require "libs.spaceship"
-  location = spaceship--galaxy.systems[localSystem].planets[localPlanet]
+  location = galaxy.systems[localSystem].planets[localPlanet]
   gamestates = require "libs.gamestates"
   player = require "libs.player"
   mathUtils = require "libs.math"

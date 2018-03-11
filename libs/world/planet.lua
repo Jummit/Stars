@@ -13,9 +13,52 @@ return {
           x=math.random(1, 1000), y=math.random(1, 1000),
           icon="basic",
           interactedFunc = function(self)
-            table.insert(spaceship.inventory, items.apple)
-            return "destroy"
-          end
+            --table.insert(spaceship.inventory, items.apple)
+            --return "destroy"
+          end,
+          dialog = {
+            text = "Hello new person!",
+            option = {
+              {
+                option = "I will kill ya!",
+                dialog = {
+                  text = "Oh no! Quick, run!",
+                  func = function(self)
+                    self.updateFunc = function() return "destroy" end
+                  end,
+                }
+              },
+              {
+                option = "Hi!",
+                dialog = {
+                  text = "What are you doing here?",
+                  option = {
+                    {
+                      option = "Nothing...",
+                      dialog = {
+                        text = "GET OOOOOUT!"
+                      }
+                    },
+                    {
+                      option = "searching cool items",
+                      dialog = {
+                        text = "Then have this and now go!",
+                        func = function()
+                          table.insert(spaceship.inventory, items.apple)
+                        end
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                option = "Do you have cool stuff?",
+                dialog = {
+                  text = "Not now, and now go."
+                }
+              }
+            }
+          }
         })
       },
       map = tilemap.new(tileset, 30, 30),
